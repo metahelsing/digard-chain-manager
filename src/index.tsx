@@ -1,10 +1,27 @@
-import * as React from 'react'
-import styles from './styles.module.css'
+import {useContext} from 'react'
+import {DigardChainContext} from "../blockchain/context/DigardChainContext";
 
-interface Props {
-  text: string
+export const useDigardChainManager = () => {
+  const {digardChainId,
+    chainInformation,
+    chainManager,
+    isValidChain,
+    tokenBalances,
+    toEtherFormat,
+    toWei,
+    convertToShortTx} = useContext(DigardChainContext);
+
+  return {digardChainId,
+    chainInformation,
+    chainManager,
+    isValidChain,
+    tokenBalances,
+    toEtherFormat,
+    toWei,
+    convertToShortTx}
 }
 
-export const ExampleComponent = ({ text }: Props) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+export {default as ChainProvider} from "../blockchain/context/DigardChainContext";
+export {default as MetaMaskConnector} from "../blockchain/wallet/MetaMaskConnector";
+export {default as WalletConnector} from "../blockchain/wallet/WalletConnector";
+export {default as CoinBaseConnector} from "../blockchain/wallet/CoinBaseConnector";
